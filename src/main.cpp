@@ -2,9 +2,7 @@
 #include "rpLidar.h"
 #include "rpLidarTypes.h"
 
-//rpLidar lidar(&Serial2,1000000);
 rpLidar lidar(&Serial2,460800);
-
 
 void setup() {
   Serial.begin(115200);
@@ -22,13 +20,9 @@ void setup() {
   else
     printf("error starting rplidar C1\r\n");
   
-  //sdst = lidar.getDeviceHealth();
-  //printf("sdst.errorCode_high=%d  sdst.errorCode_low=%d sdst.status=%d\r\n", sdst.errorCode_high, sdst.errorCode_low, sdst.status);
-  
   // stDeviceInfo_t sdi = lidar.getDeviceInfo();
   // printf("sdi.firmware_major=%d sdi.firmware_minor=%d sdi.hardware=%d sdi.model=%d sdi.serialnumber=%d\r\n", 
   //   sdi.firmware_major, sdi.firmware_minor, sdi.hardware, sdi.model, sdi.serialnumber);
-
 }
 
 void loop()
