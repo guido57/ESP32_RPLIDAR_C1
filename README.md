@@ -8,5 +8,10 @@
 * I tested it only with the RPLIDAR C1 model (it's the only lidar I have :smiley: ) and I suppose it won't work with other models without some modifications. 
 * I used an ESP32 D1 Mini but I'm pretty sure any ESP32 will suffice.
 
-* 
+# SCHEMATIC
+
+The power supply must be 5V 1A
+
+![](docs/schematic.png)
+ 
 
