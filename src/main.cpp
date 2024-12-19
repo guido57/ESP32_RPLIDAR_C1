@@ -6,12 +6,13 @@ rpLidar lidar(&Serial2,460800);
 
 void setup() {
   Serial.begin(115200);
-  
+
+  Serial2.setRxBufferSize(5000);  
   lidar.resetDevice(); //reset the device to be sure that the status is good
   stDeviceStatus_t sdst = lidar.getDeviceHealth();
   printf("sdst.errorCode_high=%d  sdst.errorCode_low=%d sdst.status=%d\r\n", sdst.errorCode_high, sdst.errorCode_low, sdst.status);
   
-  lidar.setAngleOfInterest(5,175); //Set the field of view that is saved to Data
+  lidar.setAngleOfInterest(0,360); //Set the field of view that is saved to Data
   // bool ret = lidar.start(express); //start the express scan of the lidar
   
   bool ret = lidar.start(standard); //start the express scan of the lidar
@@ -28,7 +29,7 @@ void setup() {
 void loop()
 {
   int count = lidar.readMeasurePoints();// reads a full scan and save it to Data
-  printf("\r\ncount=%d\r\n", count);
+  printf("\r\n%lu count=%d\r\n", millis(),count);
   if(count == 0){
     //restart the standard scan of the lidar
     lidar.resetDevice();
@@ -49,7 +50,7 @@ void loop()
       //     continue;
       // }
 
-      Serial.printf("angle %.1f°\tdistance\t%.0f mm\tquality\t %d%\r\n", angle,distance, quality);
+      // Serial.printf("angle %.1f°\tdistance\t%.0f mm\tquality\t %d%\r\n", angle,distance, quality);
     }
       
   }
