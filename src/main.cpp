@@ -41,7 +41,7 @@ void loop()
   }else {
     for(int i=0;i<count;i++){
       float angle = (lidar.DataBuffer[i].angle_high * 128 + lidar.DataBuffer[i].angle_low / 2) / 64.0;
-      int distance = lidar.DataBuffer[i].distance_high * 256 + lidar.DataBuffer[i].distance_low;
+      float distance = (lidar.DataBuffer[i].distance_high * 256 + lidar.DataBuffer[i].distance_low)/4;
       int quality = lidar.DataBuffer[i].quality / 4;
 
       // if (quality == 0 || distance == 0) {
@@ -49,12 +49,7 @@ void loop()
       //     continue;
       // }
 
-      Serial.print("angle\t");
-      Serial.printf("%.1f", angle);
-      Serial.print("\tdistance\t");
-      Serial.print(distance);
-      Serial.print("\tquality\t");
-      Serial.println(quality);
+      Serial.printf("angle %.1f°\tdistance\t%.0f mm\tquality\t %d%\r\n", angle,distance, quality);
     }
       
   }
